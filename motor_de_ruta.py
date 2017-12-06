@@ -1,15 +1,20 @@
+# Importing python libraries
 import sys
 import json
 
 
+# Importing file libraries 
 from config import *
+
+#importing aditional libraries
 import googlemaps
+
 
 gmaps = googlemaps.Client(key=KEY)
 
 
-#Un trayecto es una lista de rutas que se conectan entre si. Por ejemplo:
-#Un trayecto puede Consistir en una ruta desde Buenos aires a Cordoba y otro camino de Cordoba a Mendoza.
+#Un trayecto es una lista de caminos que se conectan entre si. Por ejemplo:
+#Un trayecto puede Consistir en un camino desde Buenos aires a Cordoba y otro camino de Cordoba a Mendoza.
 trayecto_esquema = []
 
 #Esquema
@@ -34,7 +39,9 @@ ruta_esquema = {
 #Cuando no se encuentra una ruta entre 2 ciudades , la misma se crea con la siguiente informacion.
 error = [{'elements': [{'status': 'ZERO_RESULTS'}]}]
 
-
+# Conditions
+# in order to make a route, the cities must be able to travel by car or any land vehicle
+# a road from buenos aires and santiago is possible, but a route from buenos aires and Madrid is not.
 
 class MotorDeRutas:
 
@@ -315,19 +322,19 @@ instance = MotorDeRutas()
 run = True
 while run:
     print("""
-        ELIJA UNA OPCION:
+        Choose an option:
 
-            1. Agregar un trayecto.
-            2. Agregar ciudad a un trayecto.
-            3. Agregar una ciudad intermedia a un trayecto.
-            4. Concatenar 2 trayectos.
-            5. Comparar trayectos.
-            6. Mostrar un trayecto.
-            7. Mostrar rutas de un trayecto.
-            8. Listar trayectos calculados.
-            9. Almacenar trayectos calculados.
-            10. Recuoerar de disco los trayectos almacenados.
-            11. Salir del sistema.
+            1. Add a route.
+            2. Add a city into a existing route.
+            3. Add a city in the middle of a route.
+            4. Concatenate 2 routes.
+            5. Campare routes.
+            6. Show a route.
+            7. Show the roads of a route.
+            8. List calculated routes.
+            9. Save a road.
+            10. Import a route.
+            11. Exit.
         """)
     ans = input("Seleccione una opcion: ")
     if ans == "1":
@@ -463,3 +470,4 @@ while run:
 
     elif ans != "":
         print("\nOpcion no valida: Ingrese un numero entre 1 y 11")
+
